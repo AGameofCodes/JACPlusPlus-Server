@@ -42,7 +42,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/net/Socket.o
+	${OBJECTDIR}/net/Exception.o \
+	${OBJECTDIR}/net/IllegalStateException.o \
+	${OBJECTDIR}/net/Socket.o \
+	${OBJECTDIR}/net/SocketException.o
 
 
 # C Compiler Flags
@@ -104,10 +107,25 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/net/Exception.o: net/Exception.cpp 
+	${MKDIR} -p ${OBJECTDIR}/net
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Exception.o net/Exception.cpp
+
+${OBJECTDIR}/net/IllegalStateException.o: net/IllegalStateException.cpp 
+	${MKDIR} -p ${OBJECTDIR}/net
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/IllegalStateException.o net/IllegalStateException.cpp
+
 ${OBJECTDIR}/net/Socket.o: net/Socket.cpp 
 	${MKDIR} -p ${OBJECTDIR}/net
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Socket.o net/Socket.cpp
+
+${OBJECTDIR}/net/SocketException.o: net/SocketException.cpp 
+	${MKDIR} -p ${OBJECTDIR}/net
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/SocketException.o net/SocketException.cpp
 
 # Subprojects
 .build-subprojects:

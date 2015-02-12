@@ -12,18 +12,20 @@
 
 using namespace std;
 
-class Server 
+class Server
 {
-    private:
-        static Server *Server1;
-        Server();
-        Server(const Server& orig);
-        virtual ~Server();
-    public:
-        unsigned int start();
-        unsigned int stopp();
-        unsigned int run();
-     
+private:
+  static Server *instance;
+  Server();
+  Server(const Server& orig);
+  virtual ~Server();
+public:
+
+  static Server *getInstance();
+  unsigned int start();
+  unsigned int stop();
+  unsigned int run();
+
 };
 
 #endif	/* SERVER_H */

@@ -34,7 +34,7 @@ public:
     LISTENING = 11,
 
     CONNECTING = 20,
-    CONNECTED = 21,
+    CONNECTED = 21
   };
 
 private:
@@ -54,7 +54,6 @@ private:
 
   struct sockaddr_in *localEndPoint;
   struct sockaddr_in *remoteEndPoint;
-
 
   void initSocket();
 };
