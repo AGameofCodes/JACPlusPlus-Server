@@ -8,6 +8,8 @@
       <itemPath>Client.h</itemPath>
       <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.h</itemPath>
+      <itemPath>exceptions/AlreadyMemberOfChannelException.h</itemPath>
+      <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,6 +22,8 @@
       <itemPath>Client.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
       <itemPath>net/Socket.cpp</itemPath>
+      <itemPath>exceptions/AlreadyMemberOfChannelException.cpp</itemPath>
+      <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"

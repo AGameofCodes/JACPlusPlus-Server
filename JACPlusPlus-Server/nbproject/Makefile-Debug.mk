@@ -39,7 +39,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/Server.o \
 	${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o \
-	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/net/Socket.o
@@ -88,11 +87,6 @@ ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o: exceptions/AlreadyMem
 	${MKDIR} -p ${OBJECTDIR}/exceptions
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o exceptions/AlreadyMemberOfChannelException.cpp
-
-${OBJECTDIR}/exceptions/ChatException.o: exceptions/ChatException.cpp 
-	${MKDIR} -p ${OBJECTDIR}/exceptions
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/ChatException.o exceptions/ChatException.cpp
 
 ${OBJECTDIR}/exceptions/NotMemberOfChannelException.o: exceptions/NotMemberOfChannelException.cpp 
 	${MKDIR} -p ${OBJECTDIR}/exceptions
