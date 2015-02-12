@@ -138,34 +138,6 @@ unsigned int Server::run()
         }
     }
     
-//    while(1)
-//    {
-//        newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
-//        if(newsocketfd < 0)
-//        {
-//            cout << "Error: Accept!" << endl;
-//            return -1;
-//        }
-//
-//        pid_t pid = fork();
-//        if(pid < 0)
-//        {
-//            cout << "What the fork?" << endl;
-//            return -1;
-//        }
-//        
-//        // Client Process started
-//        if(pid == 0)
-//        {
-//            close(socketfd);
-//            return -1;
-//        }
-//        else
-//        {
-//            close(newsocketfd);
-//        }
-//            
-//    }
 }
 
 
