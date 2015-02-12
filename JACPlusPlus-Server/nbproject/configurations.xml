@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Channel.h</itemPath>
       <itemPath>Client.h</itemPath>
+      <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -18,7 +19,6 @@
       <itemPath>Channel.cpp</itemPath>
       <itemPath>Client.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
-      <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
