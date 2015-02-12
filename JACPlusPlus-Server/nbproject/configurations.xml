@@ -8,6 +8,7 @@
       <itemPath>Client.h</itemPath>
       <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.h</itemPath>
+      <itemPath>exceptions/ChatException.h</itemPath>
       <itemPath>exceptions/AlreadyMemberOfChannelException.h</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
     </logicalFolder>
@@ -22,6 +23,7 @@
       <itemPath>Client.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
       <itemPath>net/Socket.cpp</itemPath>
+      <itemPath>exceptions/ChatException.cpp</itemPath>
       <itemPath>exceptions/AlreadyMemberOfChannelException.cpp</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
