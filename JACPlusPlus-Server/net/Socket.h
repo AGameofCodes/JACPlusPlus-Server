@@ -23,6 +23,9 @@ public:
 
   void connect(int ip, short port);
   void close();
+  
+  int read(char* buffer, int length);
+  void write(char* msg, int length);
 
   enum Status
   {

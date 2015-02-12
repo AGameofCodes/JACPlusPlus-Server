@@ -122,16 +122,16 @@ void Socket::connect(int ip, short port)
 
   localEndPoint = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
   localEndPoint->sin_family = AF_INET;
-  
+
   remoteEndPoint = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
   remoteEndPoint->sin_family = AF_INET;
   remoteEndPoint->sin_addr.s_addr = ip;
   remoteEndPoint->sin_port = htons(port);
 
   status = Status::CONNECTING;
-  
+
   ::connect(sockfd, (struct sockaddr *) remoteEndPoint, sizeof (struct sockaddr_in));
-  
+
   status = Status::CONNECTED;
 }
 
@@ -151,6 +151,15 @@ void Socket::close()
     delete remoteEndPoint;
     remoteEndPoint = NULL;
   }
-  
+
   status = Status::CLOSED;
+}
+
+int Socket::read(char* buffer, int length)
+{
+  return ::recv(sockfd, buffer, length, 0);
+}
+void Socket::write(char* buffer, int length)
+{
+  ::send(sockfd, buffer, length, 0);
 }
