@@ -93,7 +93,7 @@ Socket *Socket::accept()
   int clilen = sizeof (cli_addr);
   int newsockfd = ::accept(sockfd, (struct sockaddr *) &cli_addr, (socklen_t *) & clilen);
 
-  Socket *s = new Socket(newsockfd, domain, type, protocol, status, localEndPoint, cli_addr);
+  Socket *s = new Socket(newsockfd, domain, type, protocol, Status::CONNECTED, localEndPoint, cli_addr);
 
   return s;
 }
@@ -157,9 +157,17 @@ void Socket::close()
 
 int Socket::read(char* buffer, int length)
 {
+  if(status != Status::CONNECTED)
+  {
+    throw IllegalStateException("Socket not connected!");
+  }
   return ::recv(sockfd, buffer, length, 0);
 }
 void Socket::write(char* buffer, int length)
 {
+  if(status != Status::CONNECTED)
+  {
+    throw IllegalStateException("Socket not connected!");
+  }
   ::send(sockfd, buffer, length, 0);
 }
