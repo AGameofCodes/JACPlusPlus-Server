@@ -7,7 +7,7 @@
 
 #include "NotMemberOfChannelException.h"
 
-NotMemberOfChannelException::NotMemberOfChannelException() : ChatException()
+NotMemberOfChannelException::NotMemberOfChannelException(Client *client, Channel* channel) : ChatException(), client(client), channel(channel)
 {
 }
 
@@ -19,3 +19,11 @@ NotMemberOfChannelException::~NotMemberOfChannelException()
 {
 }
 
+Client *NotMemberOfChannelException::getClient()
+{
+  return client;
+}
+Channel *NotMemberOfChannelException::getChannel()
+{
+  return channel;
+}
