@@ -14,6 +14,7 @@
 #include <cstring>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <unistd.h>
 
 Server::Server() 
 {
@@ -93,35 +94,56 @@ unsigned int Server::run()
     
     clientaddrlen = sizeof(client_addr);
     
-    while(1)
+    newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
+    if(newsocketfd < 0)
     {
-        newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
-        if(newsocketfd < 0)
-        {
-            cout << "Error: Accept!" << endl;
-            return -1;
-        }
-
-        pid = fork();
-        if(pid < 0)
-        {
-            cout << "What the fork?" << endl;
-            return -1;
-        }
-        
-        // Client Process started
-        if(pid == 0)
-        {
-            close(socketfd);
-            doprocessing(newsocketfd);
-            return -1;
-        }
-        else
-        {
-            close(newsocketfd);
-        }
-            
+        cout << "Error: Accept!" << endl;
+        return -1;       
     }
+    
+    status = read(newsocketfd, buffer, 255);
+    if(status < 0)
+    {
+        cout << "Error: Reading from Socket!" << endl;
+        return -1;
+    }
+    
+    status = write(newsocketfd, "I got your message", 18);
+    if(status < 0)
+    {
+        cout << "Error: Writing to Socket!" << endl;
+        return -1;
+    }
+    
+    
+//    while(1)
+//    {
+//        newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
+//        if(newsocketfd < 0)
+//        {
+//            cout << "Error: Accept!" << endl;
+//            return -1;
+//        }
+//
+//        pid_t pid = fork();
+//        if(pid < 0)
+//        {
+//            cout << "What the fork?" << endl;
+//            return -1;
+//        }
+//        
+//        // Client Process started
+//        if(pid == 0)
+//        {
+//            close(socketfd);
+//            return -1;
+//        }
+//        else
+//        {
+//            close(newsocketfd);
+//        }
+//            
+//    }
 }
 
 
