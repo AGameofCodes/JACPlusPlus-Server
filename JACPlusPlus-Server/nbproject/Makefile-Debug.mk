@@ -44,7 +44,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/net/Exception.o \
 	${OBJECTDIR}/net/IllegalStateException.o \
-	${OBJECTDIR}/net/Socket.o
+	${OBJECTDIR}/net/Socket.o \
+	${OBJECTDIR}/net/SocketException.o
 
 
 # C Compiler Flags
@@ -120,6 +121,11 @@ ${OBJECTDIR}/net/Socket.o: net/Socket.cpp
 	${MKDIR} -p ${OBJECTDIR}/net
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Socket.o net/Socket.cpp
+
+${OBJECTDIR}/net/SocketException.o: net/SocketException.cpp 
+	${MKDIR} -p ${OBJECTDIR}/net
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/SocketException.o net/SocketException.cpp
 
 # Subprojects
 .build-subprojects:

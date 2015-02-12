@@ -9,6 +9,8 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <stdlib.h>
+#include "IllegalStateException.h"
+#include "SocketException.h"
 
 //#define NULL 0
 
@@ -55,10 +57,6 @@ Socket::Socket(int sockfd, int domain, int type, int protocol, Status status, st
   this->localEndPoint = localEndPoint;
   this->remoteEndPoint = remoteEndPoint;
 }
-
-
-
-
 
 void Socket::bind(short port)
 {
@@ -120,7 +118,7 @@ void Socket::initSocket()
 {
   if (status != Status::UNINITIZIALIZED)
   {
-    //todo throw illegal state exception
+    throw IllegalStateException("Socket already initialized!");
     return;
   }
 
@@ -131,6 +129,6 @@ void Socket::initSocket()
   sockfd = socket(domain, type, protocol);
   if (sockfd == -1)
   {
-    //todo throw socket exception
+    throw SocketException("Socket already initialized!");
   }
 }
