@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "IllegalStateException.h"
 #include "SocketException.h"
 
@@ -19,14 +20,9 @@ Socket::Socket() : Socket(AF_INET, SOCK_STREAM, 0)
 
 }
 
-Socket::Socket(int domain, int type, int protocol) :
-domain(domain),
-type(type),
-protocol(protocol),
-sockfd(-1),
-status(Status::UNINITIZIALIZED),
-localEndPoint(NULL),
-remoteEndPoint(NULL)
+Socket::Socket(int domain, int type, int protocol) : domain(domain), type(type),
+protocol(protocol), sockfd(-1), status(Status::UNINITIZIALIZED),
+localEndPoint(NULL), remoteEndPoint(NULL)
 {
 
 }
@@ -37,20 +33,7 @@ Socket::Socket(const Socket& orig)
 
 Socket::~Socket()
 {
-  if (sockfd > -1)
-  {
-    close();
-  }
-  if (localEndPoint != NULL)
-  {
-    delete localEndPoint;
-    localEndPoint = NULL;
-  }
-  if (remoteEndPoint != NULL)
-  {
-    delete remoteEndPoint;
-    remoteEndPoint = NULL;
-  }
+  close();
 }
 
 Socket::Socket(int sockfd, int domain, int type, int protocol, Status status, struct sockaddr_in *localEndPoint, struct sockaddr_in *remoteEndPoint)
@@ -74,7 +57,6 @@ void Socket::bind(int ip, short port)
   setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &one, sizeof (int));
 
   localEndPoint = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
-  //  bzero((void *) localEndPoint, sizeof (sockaddr_in));
   localEndPoint->sin_family = AF_INET;
   localEndPoint->sin_addr.s_addr = ip;
   localEndPoint->sin_port = htons(port);
@@ -134,12 +116,41 @@ void Socket::initSocket()
   }
 }
 
-
-void Socket::connect()
+void Socket::connect(int ip, short port)
 {
+  initSocket();
+
+  localEndPoint = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
+  localEndPoint->sin_family = AF_INET;
   
+  remoteEndPoint = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
+  remoteEndPoint->sin_family = AF_INET;
+  remoteEndPoint->sin_addr.s_addr = ip;
+  remoteEndPoint->sin_port = htons(port);
+
+  status = Status::CONNECTING;
+  
+  ::connect(sockfd, (struct sockaddr *) remoteEndPoint, sizeof (struct sockaddr_in));
+  
+  status = Status::CONNECTED;
 }
+
 void Socket::close()
 {
+  if (sockfd > -1)
+  {
+    ::close(sockfd);
+  }
+  if (localEndPoint != NULL)
+  {
+    delete localEndPoint;
+    localEndPoint = NULL;
+  }
+  if (remoteEndPoint != NULL)
+  {
+    delete remoteEndPoint;
+    remoteEndPoint = NULL;
+  }
   
+  status = Status::CLOSED;
 }

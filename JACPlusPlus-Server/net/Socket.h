@@ -21,7 +21,7 @@ public:
   void listen(int backlog);
   Socket *accept();
 
-  void connect();
+  void connect(int ip, short port);
   void close();
 
   enum Status
