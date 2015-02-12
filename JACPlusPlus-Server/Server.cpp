@@ -9,8 +9,11 @@
 #include <string>
 #include <iostream>
 #include <sys/socket.h>
-//#include <sys/types.h>
-
+#include <sys/types.h>
+#include <netdb.h>
+#include <cstring>
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 Server::Server() 
 {
@@ -33,10 +36,12 @@ unsigned int Server::stopp()
 //------------------------------------------------------------------------------
 unsigned int Server::run() 
 {
-    int socketfd;
+    int socketfd, newsocketfd;
     int portnumber;
+    int response;
     char buffer[256];
-    //struct sockadd serv_addr;
+    struct sockaddr_in server_addr, client_addr;
+    unsigned int clientaddrlen;
     int status;
     
     cout << "Waiting for incoming connection..." << endl;
@@ -59,17 +64,20 @@ unsigned int Server::run()
     //addrlen : The lenght of this address. 
     //Return value : Like all the other calls it also returns an integer. If it's '0' the call succeeded, if it's -1, we got an error that will be stored in errno as usual. 
     //status = bind(socketfd, ai_a)
-    bzero((char *) &serv_addr, sizeof(serv_addr));
+    
+    //memset((char *) &serv_addr, sizeof(serv_addr));
     portnumber = 5001;
     
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons;
+  
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(portnumber);
     
-    status = bind(socketfd, &serv_addr, sizeof(serv_addr));
+    status = bind(socketfd, (struct sockaddr *) &server_addr, sizeof(server_addr));
     if(status < 0)
     {
         cout << "ERROR: Binding not possible!" << endl;
+        return -1;
     }
     
     
@@ -77,16 +85,42 @@ unsigned int Server::run()
     //    sockfd : The socket descriptor the socket() call returns. 
     //    backlog : Our server can only handle 1 client at a time. What if more clients want to connect to your server at the same time? With backlog you can specify how many connections will be put in que. For example, if you set it to 5, and 7 connections to your server are made, 1 will fail, 1 will connect and the other 5 will be put "on hold". 
     cout << "Listen()ing for connections..." << endl;
-    status  = listen(socketfd,5)
+    status  = listen(socketfd,5);
+    if(status < 0)
+    {
+        cout << "Error: Listener!" << endl;
+    }
     
-    
-    
-    
-    
+    clientaddrlen = sizeof(client_addr);
     
     while(1)
     {
-        // let the socket listen to incoming connections      
+        newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
+        if(newsocketfd < 0)
+        {
+            cout << "Error: Accept!" << endl;
+            return -1;
+        }
+
+        pid = fork();
+        if(pid < 0)
+        {
+            cout << "What the fork?" << endl;
+            return -1;
+        }
+        
+        // Client Process started
+        if(pid == 0)
+        {
+            close(socketfd);
+            doprocessing(newsocketfd);
+            return -1;
+        }
+        else
+        {
+            close(newsocketfd);
+        }
+            
     }
 }
 
