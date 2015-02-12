@@ -8,6 +8,8 @@
       <itemPath>Channel.h</itemPath>
       <itemPath>exceptions/ChatException.h</itemPath>
       <itemPath>Client.h</itemPath>
+      <itemPath>net/Exception.h</itemPath>
+      <itemPath>net/IllegalStateException.h</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
       <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.h</itemPath>
@@ -24,6 +26,8 @@
       <itemPath>Channel.cpp</itemPath>
       <itemPath>exceptions/ChatException.cpp</itemPath>
       <itemPath>Client.cpp</itemPath>
+      <itemPath>net/Exception.cpp</itemPath>
+      <itemPath>net/IllegalStateException.cpp</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
       <itemPath>net/Socket.cpp</itemPath>
@@ -94,6 +98,14 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="net/Exception.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/Exception.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/IllegalStateException.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/IllegalStateException.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="net/Socket.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="net/Socket.h" ex="false" tool="3" flavor2="0">
@@ -158,6 +170,14 @@
             flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/Exception.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/Exception.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/IllegalStateException.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/IllegalStateException.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="net/Socket.cpp" ex="false" tool="1" flavor2="0">
       </item>
