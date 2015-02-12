@@ -7,11 +7,12 @@
 
 #include <iostream>
 
+#include "Server.h"
+
 using std::cout;
 using std::endl;
 
 int main(int argc, char** argv)
 {
-  cout << "Hello world :D" << endl;
-  return 0;
+  Server::getInstance()->start();
 }

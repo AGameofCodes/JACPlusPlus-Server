@@ -16,19 +16,39 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
+Server *Server::instance;
+
 Server::Server() 
 {
     
 }
 
+Server::Server(const Server& orig)
+{
+  
+}
+
+Server::~Server() 
+{
+}
+
+Server *Server::getInstance()
+{
+  if(Server::instance == NULL)
+  {
+    Server::instance = new Server();
+  }
+  return Server::instance;
+}
+
 
 unsigned int Server::start() 
 {
-   
+  run();
 }
 
 //------------------------------------------------------------------------------
-unsigned int Server::stopp() 
+unsigned int Server::stop() 
 {
     
 }
@@ -153,9 +173,7 @@ unsigned int Server::run()
 //    
 //}
 
-Server::~Server() 
-{
-}
+
 
 
 
