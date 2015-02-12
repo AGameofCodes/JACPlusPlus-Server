@@ -4,13 +4,14 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>exceptions/AlreadyMemberOfChannelException.h</itemPath>
       <itemPath>Channel.h</itemPath>
+      <itemPath>exceptions/ChatException.h</itemPath>
       <itemPath>Client.h</itemPath>
+      <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
       <itemPath>Server.h</itemPath>
       <itemPath>net/Socket.h</itemPath>
-      <itemPath>exceptions/ChatException.h</itemPath>
-      <itemPath>exceptions/AlreadyMemberOfChannelException.h</itemPath>
-      <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
+      <itemPath>Util.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -19,13 +20,13 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>exceptions/AlreadyMemberOfChannelException.cpp</itemPath>
       <itemPath>Channel.cpp</itemPath>
+      <itemPath>exceptions/ChatException.cpp</itemPath>
       <itemPath>Client.cpp</itemPath>
+      <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
       <itemPath>net/Socket.cpp</itemPath>
-      <itemPath>exceptions/ChatException.cpp</itemPath>
-      <itemPath>exceptions/AlreadyMemberOfChannelException.cpp</itemPath>
-      <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -61,6 +62,8 @@
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="exceptions/AlreadyMemberOfChannelException.cpp"
             ex="false"
@@ -124,6 +127,8 @@
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="exceptions/AlreadyMemberOfChannelException.cpp"
             ex="false"
