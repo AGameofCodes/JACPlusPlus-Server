@@ -10,6 +10,9 @@
 
 #include "ChatException.h"
 
+class Client;
+class Channel;
+
 class AlreadyMemberOfChannelException : public ChatException
 {
 public:

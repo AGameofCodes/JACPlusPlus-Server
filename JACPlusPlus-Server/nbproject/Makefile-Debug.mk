@@ -72,42 +72,42 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ${OBJECTFILES}
 ${OBJECTDIR}/Channel.o: Channel.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Channel.o Channel.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Channel.o Channel.cpp
 
 ${OBJECTDIR}/Client.o: Client.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
 
 ${OBJECTDIR}/Server.o: Server.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
 
 ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o: exceptions/AlreadyMemberOfChannelException.cpp 
 	${MKDIR} -p ${OBJECTDIR}/exceptions
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o exceptions/AlreadyMemberOfChannelException.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o exceptions/AlreadyMemberOfChannelException.cpp
 
 ${OBJECTDIR}/exceptions/ChatException.o: exceptions/ChatException.cpp 
 	${MKDIR} -p ${OBJECTDIR}/exceptions
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/ChatException.o exceptions/ChatException.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/ChatException.o exceptions/ChatException.cpp
 
 ${OBJECTDIR}/exceptions/NotMemberOfChannelException.o: exceptions/NotMemberOfChannelException.cpp 
 	${MKDIR} -p ${OBJECTDIR}/exceptions
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/NotMemberOfChannelException.o exceptions/NotMemberOfChannelException.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/exceptions/NotMemberOfChannelException.o exceptions/NotMemberOfChannelException.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/net/Socket.o: net/Socket.cpp 
 	${MKDIR} -p ${OBJECTDIR}/net
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Socket.o net/Socket.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Socket.o net/Socket.cpp
 
 # Subprojects
 .build-subprojects:

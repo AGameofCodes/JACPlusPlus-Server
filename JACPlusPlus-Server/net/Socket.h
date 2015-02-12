@@ -12,6 +12,7 @@ class Socket
 {
 public:
   Socket();
+  Socket(int domain, int type, int protocol);
   virtual ~Socket();
 
   void bind(short port);
@@ -38,7 +39,7 @@ public:
 
 private:
   Socket(const Socket& orig);
-  Socket(int sockfd, int domain, int type, int protocol, Status status, sockaddr_in *localEndPoint, sockaddr_in *remoteEndPoint);
+  Socket(int sockfd, int domain, int type, int protocol, Status status, struct sockaddr_in *localEndPoint, struct sockaddr_in *remoteEndPoint);
 
 
   int sockfd;

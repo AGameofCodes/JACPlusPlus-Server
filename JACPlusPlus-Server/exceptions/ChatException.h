@@ -8,6 +8,8 @@
 #ifndef CHATEXCEPTION_H
 #define	CHATEXCEPTION_H
 
+#include <exception>
+
 using std::exception;
 
 class ChatException : public exception

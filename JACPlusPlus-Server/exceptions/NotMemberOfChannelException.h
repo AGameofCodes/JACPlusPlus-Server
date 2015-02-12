@@ -10,6 +10,9 @@
 
 #include "ChatException.h"
 
+class Client;
+class Channel;
+
 class NotMemberOfChannelException : public ChatException
 {
 public:
