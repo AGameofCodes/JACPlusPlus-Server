@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include <sys/socket.h>
+//#include <sys/types.h>
 
 
 Server::Server() 
@@ -35,7 +36,7 @@ unsigned int Server::run()
     int socketfd;
     int portnumber;
     char buffer[256];
-    struct sockadd serv_addr;
+    //struct sockadd serv_addr;
     int status;
     
     cout << "Waiting for incoming connection..." << endl;
@@ -51,23 +52,41 @@ unsigned int Server::run()
         cout << "Error: Opening Socket!" << endl;
         return -1;
     }
-    
-    
-    
+     
     //int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen); 
     //sockfd : The socket descriptor the socket() call returns. 
     //addr : The address we want to listen on (localhost). 
     //addrlen : The lenght of this address. 
     //Return value : Like all the other calls it also returns an integer. If it's '0' the call succeeded, if it's -1, we got an error that will be stored in errno as usual. 
     //status = bind(socketfd, ai_a)
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    portnumber = 5001;
+    
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
+    serv_addr.sin_port = htons;
+    
+    status = bind(socketfd, &serv_addr, sizeof(serv_addr));
+    if(status < 0)
+    {
+        cout << "ERROR: Binding not possible!" << endl;
+    }
+    
+    
+    //    int listen(int sockfd, int backlog); 
+    //    sockfd : The socket descriptor the socket() call returns. 
+    //    backlog : Our server can only handle 1 client at a time. What if more clients want to connect to your server at the same time? With backlog you can specify how many connections will be put in que. For example, if you set it to 5, and 7 connections to your server are made, 1 will fail, 1 will connect and the other 5 will be put "on hold". 
+    cout << "Listen()ing for connections..." << endl;
+    status  = listen(socketfd,5)
+    
+    
     
     
     
     
     while(1)
     {
-        // let the socket listen to incoming connections
-        
+        // let the socket listen to incoming connections      
     }
 }
 
