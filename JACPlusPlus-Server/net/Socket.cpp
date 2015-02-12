@@ -157,6 +157,7 @@ void Socket::close()
 
 int Socket::read(char* buffer, int length)
 {
+  //todo impl udp compat
   if(status != Status::CONNECTED)
   {
     throw IllegalStateException("Socket not connected!");
@@ -165,6 +166,7 @@ int Socket::read(char* buffer, int length)
 }
 void Socket::write(char* buffer, int length)
 {
+  //todo impl udp compat
   if(status != Status::CONNECTED)
   {
     throw IllegalStateException("Socket not connected!");
