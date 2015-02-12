@@ -15,7 +15,7 @@ class ChatException : public exception
 public:
   ChatException();
   ChatException(const ChatException& orig);
-  virtual ~ChatException();
+//  virtual ~ChatException();
 private:
 
 };

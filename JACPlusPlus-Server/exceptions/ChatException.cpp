@@ -15,7 +15,7 @@ ChatException::ChatException(const ChatException& orig)
 {
 }
 
-ChatException::~ChatException()
-{
-}
+//ChatException::~ChatException()
+//{
+//}
 

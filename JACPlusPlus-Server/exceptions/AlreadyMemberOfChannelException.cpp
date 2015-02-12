@@ -15,9 +15,9 @@ AlreadyMemberOfChannelException::AlreadyMemberOfChannelException(const AlreadyMe
 {
 }
 
-AlreadyMemberOfChannelException::~AlreadyMemberOfChannelException()
-{
-}
+//AlreadyMemberOfChannelException::~AlreadyMemberOfChannelException()
+//{
+//}
 
 Client *AlreadyMemberOfChannelException::getClient()
 {

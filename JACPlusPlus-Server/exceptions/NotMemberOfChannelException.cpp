@@ -15,9 +15,9 @@ NotMemberOfChannelException::NotMemberOfChannelException(const NotMemberOfChanne
 {
 }
 
-NotMemberOfChannelException::~NotMemberOfChannelException()
-{
-}
+//NotMemberOfChannelException::~NotMemberOfChannelException()
+//{
+//}
 
 Client *NotMemberOfChannelException::getClient()
 {

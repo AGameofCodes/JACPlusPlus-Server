@@ -8,14 +8,14 @@
 #ifndef ALREADYMEMBEROFCHANNELEXCEPTION_H
 #define	ALREADYMEMBEROFCHANNELEXCEPTION_H
 
-class ChatException;
+#include "ChatException.h"
 
 class AlreadyMemberOfChannelException : public ChatException
 {
 public:
   AlreadyMemberOfChannelException(Client *client, Channel* channel);
   AlreadyMemberOfChannelException(const AlreadyMemberOfChannelException& orig);
-  virtual ~AlreadyMemberOfChannelException();
+//  virtual ~AlreadyMemberOfChannelException();
   
   Client *getClient();
   Channel *getChannel();

@@ -8,14 +8,14 @@
 #ifndef NOTMEMBEROFCHANNELEXCEPTION_H
 #define	NOTMEMBEROFCHANNELEXCEPTION_H
 
-class ChatException;
+#include "ChatException.h"
 
 class NotMemberOfChannelException : public ChatException
 {
 public:
   NotMemberOfChannelException(Client *client, Channel* channel);
   NotMemberOfChannelException(const NotMemberOfChannelException& orig);
-  virtual ~NotMemberOfChannelException();
+//  virtual ~NotMemberOfChannelException();
   
   Client *getClient();
   Channel *getChannel();
