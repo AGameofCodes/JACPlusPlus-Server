@@ -94,27 +94,29 @@ unsigned int Server::run()
     
     clientaddrlen = sizeof(client_addr);
     
-    newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
-    if(newsocketfd < 0)
+    while(1)
     {
-        cout << "Error: Accept!" << endl;
-        return -1;       
+        newsocketfd = accept(socketfd, (struct sockaddr *) &client_addr, &clientaddrlen);
+        if(newsocketfd < 0)
+        {
+            cout << "Error: Accept!" << endl;
+            return -1;       
+        }
+
+        status = read(newsocketfd, buffer, 255);
+        if(status < 0)
+        {
+            cout << "Error: Reading from Socket!" << endl;
+            return -1;
+        }
+
+        status = write(newsocketfd, "I got your message", 18);
+        if(status < 0)
+        {
+            cout << "Error: Writing to Socket!" << endl;
+            return -1;
+        }
     }
-    
-    status = read(newsocketfd, buffer, 255);
-    if(status < 0)
-    {
-        cout << "Error: Reading from Socket!" << endl;
-        return -1;
-    }
-    
-    status = write(newsocketfd, "I got your message", 18);
-    if(status < 0)
-    {
-        cout << "Error: Writing to Socket!" << endl;
-        return -1;
-    }
-    
     
 //    while(1)
 //    {
