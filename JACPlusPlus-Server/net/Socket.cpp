@@ -90,8 +90,12 @@ Socket *Socket::accept()
   }
 
   struct sockaddr_in *cli_addr = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
-  int clilen = sizeof (cli_addr);
-  int newsockfd = ::accept(sockfd, (struct sockaddr *) &cli_addr, (socklen_t *) & clilen);
+  int clilen = sizeof (struct sockaddr_in);
+  int newsockfd = ::accept(sockfd, (struct sockaddr *) cli_addr, (socklen_t *) &clilen);
+  if(newsockfd == -1)
+  {
+    throw SocketException("Error while accepting connection!");
+  }
 
   Socket *s = new Socket(newsockfd, domain, type, protocol, Status::CONNECTED, localEndPoint, cli_addr);
 
@@ -183,5 +187,5 @@ void Socket::write(string s)
 
 void Socket::write(string s, int length)
 {
-  write(s.c_str(), length);
+  write((char*)s.c_str(), length);
 }
