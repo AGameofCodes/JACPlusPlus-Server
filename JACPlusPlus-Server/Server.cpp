@@ -20,7 +20,7 @@
 
 Server *Server::instance;
 
-Server::Server()
+Server::Server() : t(NULL), enabled(false)
 {
 
 }
@@ -43,22 +43,41 @@ Server *Server::getInstance()
   return Server::instance;
 }
 
-unsigned int Server::start()
+void Server::start()
 {
-  run();
+  if (enabled)
+  {
+    return;
+  }
+  enabled = true;
+
+  t = new thread(&Server::run, this);
 }
 
 //------------------------------------------------------------------------------
 
-unsigned int Server::stop()
+void Server::stop()
 {
+  if (!enabled)
+  {
+    return;
+  }
+  enabled = false;
+}
 
+void Server::awaitTermination()
+{
+  if (t != NULL)
+  {
+    t->join();
+    t == NULL;
+  }
 }
 
 
 //------------------------------------------------------------------------------
 
-unsigned int Server::run()
+void Server::run()
 {
   std::cout << "Creating socket." << std::endl;
   Socket socket;
@@ -68,7 +87,7 @@ unsigned int Server::run()
   socket.listen();
 
   char buffer[256];
-  while (true)
+  while (enabled)
   {
     try
     {
@@ -86,7 +105,7 @@ unsigned int Server::run()
     catch (IllegalStateException &e)
     {
       std::cerr << e.what() << std::endl;
-      return -1;
+      return;
     }
   }
 
