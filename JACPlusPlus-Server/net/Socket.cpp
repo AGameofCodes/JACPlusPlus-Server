@@ -8,7 +8,8 @@
 #include "Socket.h"
 #include <sys/socket.h>
 #include <netdb.h>
-#include <stdlib.h>
+#include <cstdlib>
+#include <cstring>
 #include <unistd.h>
 #include "IllegalStateException.h"
 #include "SocketException.h"
@@ -96,8 +97,11 @@ Socket *Socket::accept()
   {
     throw SocketException("Error while accepting connection!");
   }
+  
+  struct sockaddr_in *lepcopy = (struct sockaddr_in*) calloc(1, sizeof (struct sockaddr_in));
+  memcpy(lepcopy, localEndPoint, sizeof(struct sockaddr_in));
 
-  Socket *s = new Socket(newsockfd, domain, type, protocol, Status::CONNECTED, localEndPoint, cli_addr);
+  Socket *s = new Socket(newsockfd, domain, type, protocol, Status::CONNECTED, lepcopy, cli_addr);
 
   return s;
 }
