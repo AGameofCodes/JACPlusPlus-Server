@@ -140,6 +140,7 @@ void Socket::close()
   if (sockfd > -1)
   {
     ::close(sockfd);
+    sockfd = -1;
   }
   if (localEndPoint != NULL)
   {
