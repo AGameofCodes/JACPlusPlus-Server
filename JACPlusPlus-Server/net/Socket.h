@@ -8,6 +8,10 @@
 #ifndef SOCKET_H
 #define	SOCKET_H
 
+#include <string>
+
+using std::string;
+
 class Socket
 {
 public:
@@ -26,6 +30,8 @@ public:
   
   int read(char* buffer, int length);
   void write(char* msg, int length);
+  void write(string s);
+  void write(string s, int length);
 
   enum Status
   {

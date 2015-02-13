@@ -72,12 +72,14 @@ unsigned int Server::run()
   {
     try
     {
-      std::cout << "Accepting." << std::endl;
+      std::cout << "Listening for connections ..." << std::endl;
       Socket *s = socket.accept();
       std::cout << "Reading." << std::endl;
-      int bytes_read = s->read(buffer, 255);
-      std::cout << "Writing" << std::endl;
-      s->write("I got your message", 18);
+      int read = s->read(buffer, 255);
+      buffer[read] = '\0';
+      std::cout << string(buffer) << std::endl;
+      std::cout << "Responding" << std::endl;
+      s->write("I got your message");
       s->close();
       delete s;
     }

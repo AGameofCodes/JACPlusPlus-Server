@@ -159,18 +159,29 @@ void Socket::close()
 int Socket::read(char* buffer, int length)
 {
   //todo impl udp compat
-  if(status != Status::CONNECTED)
+  if (status != Status::CONNECTED)
   {
     throw IllegalStateException("Socket not connected!");
   }
   return ::recv(sockfd, buffer, length, 0);
 }
+
 void Socket::write(char* buffer, int length)
 {
   //todo impl udp compat
-  if(status != Status::CONNECTED)
+  if (status != Status::CONNECTED)
   {
     throw IllegalStateException("Socket not connected!");
   }
   ::send(sockfd, buffer, length, 0);
+}
+
+void Socket::write(string s)
+{
+  write(s, s.size());
+}
+
+void Socket::write(string s, int length)
+{
+  write(s.c_str(), length);
 }
