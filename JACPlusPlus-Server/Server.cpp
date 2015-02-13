@@ -6,6 +6,8 @@
  */
 
 #include "Server.h"
+#include "net/Socket.h"
+#include "net/IllegalStateException.h"
 #include <string>
 #include <iostream>
 #include <sys/socket.h>
@@ -57,7 +59,34 @@ unsigned int Server::stop()
 //------------------------------------------------------------------------------
 unsigned int Server::run() 
 {
-    int socketfd, newsocketfd;
+    std::cout << "Creating socket." << std::endl;
+    Socket socket;
+    std::cout << "Binding to port." << std::endl;
+    socket.bind(5001);
+    std::cout << "Start listening." << std::endl;
+    socket.listen();
+
+    char buffer[256];
+    while(true)
+    {
+        try
+        {
+            std::cout << "Accepting." << std::endl;
+            Socket *s = socket.accept();
+            std::cout << "Reading." << std::endl;
+            int bytes_read = s->read(buffer, 255);
+            std::cout << "Writing" << std::endl;
+            s->write("I got your message", 18);
+            delete s;
+        }
+        catch(IllegalStateException &e)
+        {
+            std::cerr << e.what() << std::endl;
+            return -1;
+        }
+    }
+    
+    /*int socketfd, newsocketfd;
     int portnumber;
     int response;
     char buffer[256];
@@ -137,7 +166,7 @@ unsigned int Server::run()
             return -1;
         }
     }
-    
+    */
 }
 
 
