@@ -24,8 +24,6 @@ Client::~Client()
 
 void Client::join(Channel *c)
 {
-  
-  
   //notify join
 }
 
