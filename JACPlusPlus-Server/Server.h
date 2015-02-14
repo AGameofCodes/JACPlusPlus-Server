@@ -14,15 +14,13 @@
 
 using std::thread;
 
-using namespace std;
-
 class Server
 {
 private:
   static Server *instance;
   thread *t;
   bool enabled;
-  
+
   Server();
   Server(const Server& orig);
   virtual ~Server();

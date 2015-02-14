@@ -41,11 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o \
 	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/net/Exception.o \
-	${OBJECTDIR}/net/IllegalStateException.o \
-	${OBJECTDIR}/net/Socket.o \
-	${OBJECTDIR}/net/SocketException.o
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -62,11 +58,13 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-Wl,-rpath,../../libsockcpp/dist/Debug/GNU-Linux-x86 -L../../libsockcpp/dist/Debug/GNU-Linux-x86 -llibsockcpp
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ../../libsockcpp/dist/Debug/GNU-Linux-x86/liblibsockcpp.so
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -107,28 +105,10 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
-${OBJECTDIR}/net/Exception.o: net/Exception.cpp 
-	${MKDIR} -p ${OBJECTDIR}/net
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Exception.o net/Exception.cpp
-
-${OBJECTDIR}/net/IllegalStateException.o: net/IllegalStateException.cpp 
-	${MKDIR} -p ${OBJECTDIR}/net
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/IllegalStateException.o net/IllegalStateException.cpp
-
-${OBJECTDIR}/net/Socket.o: net/Socket.cpp 
-	${MKDIR} -p ${OBJECTDIR}/net
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/Socket.o net/Socket.cpp
-
-${OBJECTDIR}/net/SocketException.o: net/SocketException.cpp 
-	${MKDIR} -p ${OBJECTDIR}/net
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/net/SocketException.o net/SocketException.cpp
-
 # Subprojects
 .build-subprojects:
+	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug
+	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
@@ -137,6 +117,8 @@ ${OBJECTDIR}/net/SocketException.o: net/SocketException.cpp
 
 # Subprojects
 .clean-subprojects:
+	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug clean
+	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug clean
 
 # Enable dependency checking
 .dep.inc: .depcheck-impl

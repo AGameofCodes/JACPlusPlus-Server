@@ -6,8 +6,8 @@
  */
 
 #include "Server.h"
-#include "net/Socket.h"
-#include "net/IllegalStateException.h"
+#include "../../libsockcpp/Socket.h"
+#include "../../libsockcpp/IllegalStateException.h"
 #include <string>
 #include <iostream>
 #include <sys/socket.h>
@@ -17,6 +17,9 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <unistd.h>
+
+using namespace libsockcpp;
+using std::string;
 
 Server *Server::instance;
 
@@ -80,11 +83,11 @@ void Server::awaitTermination()
 void Server::run()
 {
   std::cout << "Creating socket." << std::endl;
-  Socket socket;
+  Socket *socket = new Socket();
   std::cout << "Binding to port." << std::endl;
-  socket.bind(5001);
+  socket->bind(5001);
   std::cout << "Start listening." << std::endl;
-  socket.listen();
+  socket->listen();
 
   char buffer[256];
   while (enabled)
@@ -92,7 +95,7 @@ void Server::run()
     try
     {
       std::cout << "Listening for connections ..." << std::endl;
-      Socket *s = socket.accept();
+      Socket *s = socket->accept();
       std::cout << "Reading." << std::endl;
       int read = s->read(buffer, 255);
       buffer[read] = '\0';
@@ -105,9 +108,10 @@ void Server::run()
     catch (IllegalStateException &e)
     {
       std::cerr << e.what() << std::endl;
-      return;
+      break;
     }
   }
+  socket->close();
 
   /*int socketfd, newsocketfd;
   int portnumber;
