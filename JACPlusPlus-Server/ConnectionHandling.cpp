@@ -23,6 +23,7 @@ ConnectionHandling::~ConnectionHandling()
 }
 
 
+//------------------------------------------------------------------------------
 
 void ConnectionHandling::start() 
 {
@@ -36,10 +37,16 @@ void ConnectionHandling::start()
   
 }
 
+
+//------------------------------------------------------------------------------
+
 void ConnectionHandling::run() 
 {
   
 }
+
+
+//------------------------------------------------------------------------------
 
 void ConnectionHandling::stop() 
 {
@@ -49,6 +56,8 @@ void ConnectionHandling::stop()
   }
   enabled = false;
 }
+
+//------------------------------------------------------------------------------
 
 void ConnectionHandling::awaitTermination()
 {
