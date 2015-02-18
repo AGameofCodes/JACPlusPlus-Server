@@ -10,6 +10,7 @@
 
 
 ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket) 
+: bufferreader(new SocketToBuffer(socket)), transmissionid(0)
 {
   
 }
@@ -20,6 +21,7 @@ ConnectionHandler::ConnectionHandler(const ConnectionHandler& orig)
 
 ConnectionHandler::~ConnectionHandler() 
 {
+  delete bufferreader;
 }
 
 //------------------------------------------------------------------------------
@@ -61,8 +63,8 @@ void ConnectionHandler::run()
 //------------------------------------------------------------------------------
 
 void ConnectionHandler::readIo() {
-  socket->read(); //todo read
-  Buf *buf;
+  readSocket();
+  Buf *buf = bufferreader->getBuffer();
   if(buf->readableBytes() < sizeof(int))
     return;
   
@@ -85,7 +87,7 @@ void ConnectionHandler::readIo() {
 
 void ConnectionHandler::readSocket()
 {
-  //socket->
+  bufferreader->read();
 }
 
 
@@ -115,7 +117,7 @@ void ConnectionHandler::handlePacket1(Buf *b)
 
 void ConnectionHandler::writeIo()
 {
-  socket->write(); //todo write
+//  socket->write(); //todo write
 }
 
 

@@ -17,6 +17,8 @@ SocketToBuffer::SocketToBuffer(const SocketToBuffer& orig)
   
 }
 
+//------------------------------------------------------------------------------
+
 SocketToBuffer::~SocketToBuffer() 
 {
   delete b;
@@ -29,6 +31,9 @@ void SocketToBuffer::read()
   
   b->write(buffer, len);
 }
+
+
+//------------------------------------------------------------------------------
 
 Buf *SocketToBuffer::getBuffer()
 {

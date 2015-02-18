@@ -13,15 +13,16 @@
 #include "iostream"
 #include <string>
 #include "../../libanoi/Buf.h"
+#include "SocketToBuffer.h"
 
 class ConnectionHandler {
 private:
     bool enabled;
     std::thread *t;
     libsockcpp::Socket *socket;
+    SocketToBuffer *bufferreader;
     
     int transmissionid;
-    int protokoltyp;
     
     int newTransMissionId();
     void run();
