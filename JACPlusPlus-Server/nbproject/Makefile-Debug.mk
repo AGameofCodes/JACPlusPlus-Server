@@ -37,8 +37,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Channel.o \
 	${OBJECTDIR}/Client.o \
-	${OBJECTDIR}/ConnectionHandling.o \
+	${OBJECTDIR}/ConnectionHandler.o \
 	${OBJECTDIR}/Server.o \
+	${OBJECTDIR}/SocketToBuffer.o \
 	${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o \
 	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
@@ -81,15 +82,20 @@ ${OBJECTDIR}/Client.o: Client.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
 
-${OBJECTDIR}/ConnectionHandling.o: ConnectionHandling.cpp 
+${OBJECTDIR}/ConnectionHandler.o: ConnectionHandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConnectionHandling.o ConnectionHandling.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConnectionHandler.o ConnectionHandler.cpp
 
 ${OBJECTDIR}/Server.o: Server.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
+
+${OBJECTDIR}/SocketToBuffer.o: SocketToBuffer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SocketToBuffer.o SocketToBuffer.cpp
 
 ${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o: exceptions/AlreadyMemberOfChannelException.cpp 
 	${MKDIR} -p ${OBJECTDIR}/exceptions

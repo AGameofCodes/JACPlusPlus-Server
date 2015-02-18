@@ -8,9 +8,10 @@
       <itemPath>Channel.h</itemPath>
       <itemPath>exceptions/ChatException.h</itemPath>
       <itemPath>Client.h</itemPath>
-      <itemPath>ConnectionHandling.h</itemPath>
+      <itemPath>ConnectionHandler.h</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
       <itemPath>Server.h</itemPath>
+      <itemPath>SocketToBuffer.h</itemPath>
       <itemPath>Util.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -24,9 +25,10 @@
       <itemPath>Channel.cpp</itemPath>
       <itemPath>exceptions/ChatException.cpp</itemPath>
       <itemPath>Client.cpp</itemPath>
-      <itemPath>ConnectionHandling.cpp</itemPath>
+      <itemPath>ConnectionHandler.cpp</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
+      <itemPath>SocketToBuffer.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -91,13 +93,17 @@
       </item>
       <item path="Client.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ConnectionHandling.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ConnectionHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ConnectionHandling.h" ex="false" tool="3" flavor2="0">
+      <item path="ConnectionHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SocketToBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SocketToBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -156,13 +162,17 @@
       </item>
       <item path="Client.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ConnectionHandling.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ConnectionHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ConnectionHandling.h" ex="false" tool="3" flavor2="0">
+      <item path="ConnectionHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SocketToBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SocketToBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util.h" ex="false" tool="3" flavor2="0">
       </item>
