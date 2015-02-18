@@ -9,6 +9,7 @@
             <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects>
+                <make-dep-project>../../libanoi</make-dep-project>
                 <make-dep-project>../../libsockcpp</make-dep-project>
             </make-dep-projects>
             <sourceRootList/>

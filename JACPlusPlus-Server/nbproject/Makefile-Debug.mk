@@ -60,13 +60,15 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-Wl,-rpath,../../libsockcpp/dist/Debug/GNU-Linux-x86 -L../../libsockcpp/dist/Debug/GNU-Linux-x86 -llibsockcpp
+LDLIBSOPTIONS=-Wl,-rpath,../../libsockcpp/dist/Debug/GNU-Linux-x86 -L../../libsockcpp/dist/Debug/GNU-Linux-x86 -llibsockcpp -Wl,-rpath,../../libanoi/dist/Debug/GNU-Linux-x86 -L../../libanoi/dist/Debug/GNU-Linux-x86 -llibanoi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ../../libsockcpp/dist/Debug/GNU-Linux-x86/liblibsockcpp.so
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ../../libanoi/dist/Debug/GNU-Linux-x86/liblibanoi.so
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jacplusplus-server: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -120,7 +122,9 @@ ${OBJECTDIR}/main.o: main.cpp
 # Subprojects
 .build-subprojects:
 	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug
+	cd ../../libanoi && ${MAKE}  -f Makefile CONF=Debug
 	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug
+	cd ../../libanoi && ${MAKE}  -f Makefile CONF=Debug
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
@@ -130,7 +134,9 @@ ${OBJECTDIR}/main.o: main.cpp
 # Subprojects
 .clean-subprojects:
 	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug clean
+	cd ../../libanoi && ${MAKE}  -f Makefile CONF=Debug clean
 	cd ../../libsockcpp && ${MAKE}  -f Makefile CONF=Debug clean
+	cd ../../libanoi && ${MAKE}  -f Makefile CONF=Debug clean
 
 # Enable dependency checking
 .dep.inc: .depcheck-impl
