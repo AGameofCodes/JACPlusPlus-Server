@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Channel.o \
 	${OBJECTDIR}/Client.o \
+	${OBJECTDIR}/ConnectionHandling.o \
 	${OBJECTDIR}/Server.o \
 	${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o \
 	${OBJECTDIR}/exceptions/ChatException.o \
@@ -79,6 +80,11 @@ ${OBJECTDIR}/Client.o: Client.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
+
+${OBJECTDIR}/ConnectionHandling.o: ConnectionHandling.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConnectionHandling.o ConnectionHandling.cpp
 
 ${OBJECTDIR}/Server.o: Server.cpp 
 	${MKDIR} -p ${OBJECTDIR}
