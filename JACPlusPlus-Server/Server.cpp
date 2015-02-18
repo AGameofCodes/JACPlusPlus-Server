@@ -59,6 +59,7 @@ void Server::start()
 }
 
 //------------------------------------------------------------------------------
+
 void Server::stop()
 {
   if (!enabled)
@@ -79,6 +80,7 @@ void Server::awaitTermination()
 
 
 //------------------------------------------------------------------------------
+
 void Server::run()
 {
   std::cout << "Creating socket." << std::endl;

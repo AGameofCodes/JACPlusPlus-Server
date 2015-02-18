@@ -12,7 +12,9 @@ SocketToBuffer::SocketToBuffer(libsockcpp::Socket *s) : s(s), b(new Buf())
   
 }
 
-SocketToBuffer::SocketToBuffer(const SocketToBuffer& orig) {
+SocketToBuffer::SocketToBuffer(const SocketToBuffer& orig) 
+{
+  
 }
 
 SocketToBuffer::~SocketToBuffer() 
@@ -26,7 +28,6 @@ void SocketToBuffer::read()
   int len = s->read(buffer, 256);
   
   b->write(buffer, len);
-  
 }
 
 Buf *SocketToBuffer::getBuffer()

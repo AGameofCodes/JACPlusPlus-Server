@@ -58,6 +58,8 @@ void ConnectionHandler::run()
 }
 
 
+//------------------------------------------------------------------------------
+
 void ConnectionHandler::readIo() {
   socket->read(); //todo read
   Buf *buf;
@@ -78,10 +80,16 @@ void ConnectionHandler::readIo() {
   handlePacket(protocoltype, buf);
 }
 
+
+//------------------------------------------------------------------------------
+
 void ConnectionHandler::readSocket()
 {
-  socket->
+  //socket->
 }
+
+
+//------------------------------------------------------------------------------
 
 void ConnectionHandler::handlePacket(char protocoltype, Buf *b)
 {
@@ -95,6 +103,9 @@ void ConnectionHandler::handlePacket(char protocoltype, Buf *b)
       break;
   }
 }
+
+
+//------------------------------------------------------------------------------
 
 void ConnectionHandler::handlePacket1(Buf *b)
 {
