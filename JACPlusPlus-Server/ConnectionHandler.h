@@ -10,12 +10,12 @@
 
 #include "../../libsockcpp/Socket.h"
 #include "../../libsockcpp/IllegalStateException.h"
-#include "iostream"
-#include <string>
 #include "../../libanoi/Buf.h"
 #include "SocketToBuffer.h"
-#include <queue>
 #include "packet/Packet.h"
+#include "packet/PacketHandler.h"
+#include <string>
+#include <queue>
 #include <mutex>
 
 class ConnectionHandler
@@ -23,24 +23,32 @@ class ConnectionHandler
 private:
   ConnectionHandler(const ConnectionHandler& orig) = delete;
 
+  //sock server things
   bool enabled;
   std::thread *t;
   libsockcpp::Socket *socket;
+  
+  //reading things
   SocketToBuffer *bufferreader;
+  
+  //writing things
   //                    protocoltype, packettype, transmissionid, packet
   std::queue<std::tuple<char, char, int, Packet*>*> writequeue;
   std::mutex writeqmutex;
   
+  //transmission id counter
   int transmissionid;
 
   int newTransMissionId();
   void run();
+  
+  //io functions
   void readIo();
   void writeIo();
   void readSocket();
   void handlePacket(char protocoltype, Buf *b);
   void handlePacket1(Buf *b);
-  void writerFct(char protocoltype, char packettype, int transmissionid, Packet *packet);
+  void writePacket(char protocoltype, char packettype, int transmissionid, Packet *packet);
 public:
   ConnectionHandler(libsockcpp::Socket *socket);
   virtual ~ConnectionHandler();
