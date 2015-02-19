@@ -14,13 +14,3 @@ Packet::Packet()
 Packet::~Packet()
 {
 }
-
-void read(Buf *b)
-{
-  
-}
-
-void write(Buf *b)
-{
-
-}
