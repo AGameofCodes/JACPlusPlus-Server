@@ -7,6 +7,10 @@
 
 #include "PacketFactory.h"
 
+#define MAPPAIR(x, y) pair<char, PACKET_CTOR_TYPE>(x, y)
+
+using std::pair;
+
 PacketFactory *PacketFactory::instance;
 
 PacketFactory *PacketFactory::getInstance()
@@ -20,11 +24,13 @@ PacketFactory *PacketFactory::getInstance()
 
 PacketFactory::PacketFactory()
 {
-  //init map<char, Packetclass or so>
+  //list a packets here
+//  packetctormap.insert(MAPPAIR(0, packetctor));
 }
 
 Packet *PacketFactory::create(char type)
 {
-  return nullptr;
+  mapiter it = packetctormap.find(type);
+  return it != packetctormap.end() ? it->second() : nullptr;
 }
 
