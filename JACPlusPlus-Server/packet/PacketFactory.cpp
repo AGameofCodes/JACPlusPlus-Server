@@ -25,7 +25,7 @@ PacketFactory *PacketFactory::getInstance()
 PacketFactory::PacketFactory()
 {
   //list a packets here
-//  packetctormap.insert(MAPPAIR(0, packetctor));
+//  packetctormap.insert(MAPPAIR(0, &Packet::create));
 }
 
 Packet *PacketFactory::create(char type)

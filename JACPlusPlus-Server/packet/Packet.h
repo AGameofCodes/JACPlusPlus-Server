@@ -16,6 +16,7 @@ public:
   Packet();
   Packet(const Packet& orig) = delete;
   virtual ~Packet();
+  static Packet* create();
   
   virtual void read(Buf *b) = 0;
   virtual void write(Buf *b) = 0;
