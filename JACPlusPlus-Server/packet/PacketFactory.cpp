@@ -31,6 +31,6 @@ PacketFactory::PacketFactory()
 Packet *PacketFactory::create(char type)
 {
   mapiter it = packetctormap.find(type);
-  return it != packetctormap.end() ? it->second() : nullptr;
+  return it != packetctormap.end() ? (*it->second)() : nullptr;
 }
 
