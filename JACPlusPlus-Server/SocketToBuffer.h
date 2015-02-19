@@ -14,19 +14,21 @@
 #include "../../libanoi/Buf.h"
 #include <string>
 
-class SocketToBuffer {
+class SocketToBuffer
+{
 public:
-    SocketToBuffer(libsockcpp::Socket *s);
-    SocketToBuffer(const SocketToBuffer& orig) = delete;
-    virtual ~SocketToBuffer();
-    
-    void read();
-    Buf *getBuffer();
+  SocketToBuffer(libsockcpp::Socket *s);
+  virtual ~SocketToBuffer();
+
+  void read();
+  Buf *getBuffer();
 private:
-    Buf *b;
-    libsockcpp::Socket *s;
-    
-    
+  SocketToBuffer(const SocketToBuffer& orig) = delete;
+
+  Buf *b;
+  libsockcpp::Socket *s;
+
+
 };
 
 #endif	/* SOCKETTOBUFFER_H */

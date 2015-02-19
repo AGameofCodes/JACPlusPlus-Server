@@ -15,32 +15,34 @@
 #include "../../libanoi/Buf.h"
 #include "SocketToBuffer.h"
 
-class ConnectionHandler {
+class ConnectionHandler
+{
 private:
-    bool enabled;
-    std::thread *t;
-    libsockcpp::Socket *socket;
-    SocketToBuffer *bufferreader;
-    
-    int transmissionid;
-    
-    int newTransMissionId();
-    void run();
-    void readIo();
-    void writeIo();
-    void readSocket();
-    void handlePacket(char protocoltype, Buf *b);
-    void handlePacket1(Buf *b);
-    
+  ConnectionHandler(const ConnectionHandler& orig) = delete;
+
+  bool enabled;
+  std::thread *t;
+  libsockcpp::Socket *socket;
+  SocketToBuffer *bufferreader;
+
+  int transmissionid;
+
+  int newTransMissionId();
+  void run();
+  void readIo();
+  void writeIo();
+  void readSocket();
+  void handlePacket(char protocoltype, Buf *b);
+  void handlePacket1(Buf *b);
+
 public:
-    ConnectionHandler(libsockcpp::Socket *socket);
-    ConnectionHandler(const ConnectionHandler& orig) = delete;
-    virtual ~ConnectionHandler();
-    void start();
-    void stop();
-    void awaitTermination();
-    
-    
+  ConnectionHandler(libsockcpp::Socket *socket);
+  virtual ~ConnectionHandler();
+  void start();
+  void stop();
+  void awaitTermination();
+
+
 };
 
 #endif	/* CONNECTIONHANDLER_H */

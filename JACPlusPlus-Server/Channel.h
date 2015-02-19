@@ -20,24 +20,23 @@ class Channel
 {
 public:
   Channel(string name);
-  Channel(const Channel& orig) = delete;
   virtual ~Channel();
-  
+
   //client management
   void addClient(Client *c);
   void removeClient(Client *c);
   bool isMember(Client *c);
-  
+
   //getter
   list<Client*> getClients();
   string getName();
 private:
-  
-  
+  Channel(const Channel& orig) = delete;
+
   //vars
   string *name;
   list<Client*> clients;
-  
+
   //iter
   typedef list<Client*>::iterator clientsIter;
 };

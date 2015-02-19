@@ -20,7 +20,6 @@ class Client
 {
 public:
   Client(string name, string nick);
-  Client(const Client& orig) = delete;
   virtual ~Client();
   
   //channel management
@@ -35,6 +34,8 @@ public:
   list<Channel*> getChannels();
   
 private:
+  Client(const Client& orig) = delete;
+
   //var
   string *name;
   string *nick;

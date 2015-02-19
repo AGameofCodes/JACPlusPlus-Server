@@ -22,10 +22,11 @@ private:
   bool enabled;
 
   Server();
-  Server(const Server& orig) = delete;
   virtual ~Server();
   void run();
 public:
+  Server(const Server& orig) = delete;
+  
   static Server *getInstance();
   void start();
   void stop();
