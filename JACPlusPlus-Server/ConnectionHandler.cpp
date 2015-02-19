@@ -171,7 +171,9 @@ void ConnectionHandler::writeIo()
     socket->write(writebuf->data(), writebuf->writerIndex());
     
     // remove element and delete it
+    writeqmutex.lock();
     writequeue.pop();
+    writeqmutex.unlock();
     delete tq;
   }
 }
