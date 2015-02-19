@@ -85,6 +85,7 @@ void ConnectionHandler::readIo()
     handlePacket(protocoltype, buf);
   }
   
+  //remove data we do not need anymore
   buf->discardReadBytes();
 }
 
