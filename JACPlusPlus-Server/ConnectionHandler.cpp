@@ -15,7 +15,6 @@ ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket)
 
 }
 
-
 ConnectionHandler::~ConnectionHandler()
 {
   delete bufferreader;
@@ -71,7 +70,7 @@ void ConnectionHandler::readIo()
 
     //mark position to reset it when packet is not fully readable
     buf->markReaderIndex();
-    
+
     //read packet length and check if the packet has fully arrived
     int len = buf->readInt();
     if (buf->readableBytes() > len)
@@ -84,7 +83,7 @@ void ConnectionHandler::readIo()
     char protocoltype = buf->readChar();
     handlePacket(protocoltype, buf);
   }
-  
+
   //remove data we do not need anymore
   buf->discardReadBytes();
 }
@@ -121,21 +120,21 @@ void ConnectionHandler::handlePacket1(Buf *b)
 {
   int type = b->readInt();
   int transmissionid = b->readInt();
-  
+
   //create the right packet object
   Packet *p = PacketFactory::getInstance()->create(type);
-  if(p == nullptr)
+  if (p == nullptr)
   {
     //ignore
     return;
   }
-  
+
   //read the packet
   p->read(b);
-  
+
   //handle packet
   //todo: ...
-  
+
   //delete the packet
   delete p;
 }
