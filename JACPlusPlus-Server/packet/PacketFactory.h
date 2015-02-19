@@ -11,7 +11,7 @@
 #include "Packet.h"
 #include <map>
 
-#define PACKET_CTOR_TYPE Packet*(*)()
+#define PACKET_CTOR_TYPE Packet*(*)()  //returntype(*function point)(paramtypes)
 
 class PacketFactory
 {
@@ -24,7 +24,7 @@ public:
 private:
   static PacketFactory *instance;
   std::map<char, PACKET_CTOR_TYPE> packetctormap; //Packet*(*)() lol
-  typedef std::map<char, PACKET_CTOR_TYPE>::iterator mapiter; //netbeans can't find the iterator but it compiles
+  typedef std::map<char, PACKET_CTOR_TYPE>::iterator mapiter; //netbeans can't find the iterator but it compiles  // love it
   
   PacketFactory();
   PacketFactory(const PacketFactory& orig) = delete;
