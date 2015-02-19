@@ -44,8 +44,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/packet/LoginPacket.o \
+	${OBJECTDIR}/packet/NameSetPacket.o \
 	${OBJECTDIR}/packet/Packet.o \
-	${OBJECTDIR}/packet/PacketFactory.o
+	${OBJECTDIR}/packet/PacketFactory.o \
+	${OBJECTDIR}/packet/PacketHandler.o
 
 
 # C Compiler Flags
@@ -121,6 +124,16 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/packet/LoginPacket.o: packet/LoginPacket.cpp 
+	${MKDIR} -p ${OBJECTDIR}/packet
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/packet/LoginPacket.o packet/LoginPacket.cpp
+
+${OBJECTDIR}/packet/NameSetPacket.o: packet/NameSetPacket.cpp 
+	${MKDIR} -p ${OBJECTDIR}/packet
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/packet/NameSetPacket.o packet/NameSetPacket.cpp
+
 ${OBJECTDIR}/packet/Packet.o: packet/Packet.cpp 
 	${MKDIR} -p ${OBJECTDIR}/packet
 	${RM} "$@.d"
@@ -130,6 +143,11 @@ ${OBJECTDIR}/packet/PacketFactory.o: packet/PacketFactory.cpp
 	${MKDIR} -p ${OBJECTDIR}/packet
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/packet/PacketFactory.o packet/PacketFactory.cpp
+
+${OBJECTDIR}/packet/PacketHandler.o: packet/PacketHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/packet
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/packet/PacketHandler.o packet/PacketHandler.cpp
 
 # Subprojects
 .build-subprojects:
