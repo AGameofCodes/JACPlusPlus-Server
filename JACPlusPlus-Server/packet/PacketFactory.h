@@ -18,7 +18,6 @@ class PacketFactory
 public:
   static PacketFactory *getInstance();
   
-  PacketFactory(const PacketFactory& orig) = delete;
   virtual ~PacketFactory() = delete;
   
   Packet *create(char type);
@@ -28,6 +27,7 @@ private:
   typedef std::map<char, PACKET_CTOR_TYPE>::iterator mapiter; //netbeans can't find the iterator but it compiles
   
   PacketFactory();
+  PacketFactory(const PacketFactory& orig) = delete;
 };
 
 #endif	/* PACKETFACTORY_H */
