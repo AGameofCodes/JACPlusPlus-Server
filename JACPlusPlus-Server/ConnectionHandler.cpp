@@ -173,9 +173,11 @@ void ConnectionHandler::writeIo()
     // remove element and delete it
     writeqmutex.lock();
     writequeue.pop();
+    writeqmutex.unlock();
+    
+    //delete objects
     delete b;
     delete writebuf;
-    writeqmutex.unlock();
     delete tq;
   }
 }
@@ -186,8 +188,9 @@ void ConnectionHandler::writeIo()
 void ConnectionHandler::writerFct(char protocoltype, char packettype, int transmissionid, Packet *packet)
 {
   std::tuple<char, char, int, Packet*> *tq = new std::tuple<char, char, int, Packet*>(protocoltype, packettype, transmissionid, packet);
+  
+  // add element to queue
   writeqmutex.lock();
-  // add elment to queue
   writequeue.push(tq);
   writeqmutex.unlock();
 }
