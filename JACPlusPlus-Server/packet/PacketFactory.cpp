@@ -22,7 +22,7 @@ PacketFactory::PacketFactory()
 {
 }
 
-Packet *PacketFactory::create()
+Packet *PacketFactory::create(char type)
 {
   return nullptr;
 }

@@ -18,7 +18,7 @@ public:
   PacketFactory(const PacketFactory& orig) = delete;
   virtual ~PacketFactory() = delete;
   
-  Packet *create();
+  Packet *create(char type);
 private:
   static PacketFactory *instance;
   
