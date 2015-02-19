@@ -185,7 +185,7 @@ void ConnectionHandler::writeIo()
 
 //------------------------------------------------------------------------------
 
-void ConnectionHandler::writerFct(char protocoltype, char packettype, int transmissionid, Packet *packet)
+void ConnectionHandler::writePacket(char protocoltype, char packettype, int transmissionid, Packet *packet)
 {
   std::tuple<char, char, int, Packet*> *tq = new std::tuple<char, char, int, Packet*>(protocoltype, packettype, transmissionid, packet);
   
