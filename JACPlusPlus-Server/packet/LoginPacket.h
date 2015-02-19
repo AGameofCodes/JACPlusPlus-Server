@@ -14,31 +14,21 @@
 class LoginPacket : public Packet
 {
 public:
+  static std::string *getMagicNO();
+  
   LoginPacket();
   virtual ~LoginPacket();
   
   //getter & setter
-  std::string *name();
-  void name(std::string *name);
-  std::string *realname();
-  void realname(std::string *realname);
-  std::string *nick();
-  void nick(std::string *nick);
-  std::string *nick2();
-  void nick2(std::string *nick2);
-  std::string *nick3();
-  void nick3(std::string *nick3);
+  std::string *hello();
+  void hello(std::string *hello);
 private:
   LoginPacket(const LoginPacket& orig) = delete;
   void read(Buf *b);
   void write(Buf *b);
 
   //vars
-  std::string *vname;
-  std::string *vrealname;
-  std::string *vnick;
-  std::string *vnick2;
-  std::string *vnick3;
+  std::string *vhello;
 };
 
 #endif	/* LOGINPACKET_H */

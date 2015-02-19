@@ -9,84 +9,37 @@
 
 using std::string;
 
+std::string *LoginPacket::getMagicNO()
+{
+  return new std::string("\x00\x01\x02JAC++");
+}
+
 LoginPacket::LoginPacket() : Packet()
 {
 }
 
 LoginPacket::~LoginPacket()
 {
-  delete vname;
-  delete vrealname;
-  delete vnick;
-  delete vnick2;
-  delete vnick3;
+  delete vhello;
 }
 
 void LoginPacket::read(Buf* b)
 {
-  vname = b->readString();
-  vrealname = b->readString();
-  vnick = b->readString();
-  vnick2 = b->readString();
-  vnick3 = b->readString();
+  vhello = b->readString();
 }
 
 void LoginPacket::write(Buf *b)
 {
-  b->write(vname);
-  b->write(vrealname);
-  b->write(vnick);
-  b->write(vnick2);
-  b->write(vnick3);
+  b->write(vhello);
 }
 
 //getter & setter
-string *LoginPacket::name()
+string *LoginPacket::hello()
 {
-  return vname;
+  return vhello;
 }
 
-void LoginPacket::name(string *name)
+void LoginPacket::hello(string *hello)
 {
-  vname = name;
-}
-
-string *LoginPacket::realname()
-{
-  return vrealname;
-}
-
-void LoginPacket::realname(string *realname)
-{
-  vrealname = realname;
-}
-
-string *LoginPacket::nick()
-{
-  return vnick;
-}
-
-void LoginPacket::nick(string *nick)
-{
-  vnick = nick;
-}
-
-string *LoginPacket::nick2()
-{
-  return vnick2;
-}
-
-void LoginPacket::nick2(string *nick2)
-{
-  vnick2 = nick2;
-}
-
-string *LoginPacket::nick3()
-{
-  return vnick3;
-}
-
-void LoginPacket::nick3(string *nick3)
-{
-  vnick3 = nick3;
+  vhello = hello;
 }
