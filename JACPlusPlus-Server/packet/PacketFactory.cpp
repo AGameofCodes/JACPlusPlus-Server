@@ -20,6 +20,7 @@ PacketFactory *PacketFactory::getInstance()
 
 PacketFactory::PacketFactory()
 {
+  //init map<char, Packetclass or so>
 }
 
 Packet *PacketFactory::create(char type)
