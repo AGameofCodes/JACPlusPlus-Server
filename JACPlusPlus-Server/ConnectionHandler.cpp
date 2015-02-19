@@ -7,6 +7,7 @@
 
 #include <thread>
 #include "ConnectionHandler.h"
+#include "packet/PacketFactory.h"
 
 ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket)
 : bufferreader(new SocketToBuffer(socket)), transmissionid(0)
@@ -117,6 +118,20 @@ void ConnectionHandler::handlePacket1(Buf *b)
 {
   int type = b->readInt();
   int transmissionid = b->readInt();
+  
+  //create the right packet object
+  Packet *p = PacketFactory::getInstance()->create(type);
+  if(p == nullptr)
+  {
+    //ignore
+    return;
+  }
+  
+  //read the packet
+  p->read(b);
+  
+  //handle packet
+  //todo: ...
 }
 
 void ConnectionHandler::writeIo()
