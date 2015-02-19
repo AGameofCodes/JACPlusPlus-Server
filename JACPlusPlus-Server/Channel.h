@@ -20,6 +20,7 @@ class Channel
 {
 public:
   Channel(string name);
+  Channel(const Channel& orig) = delete;
   virtual ~Channel();
   
   //client management
@@ -31,7 +32,7 @@ public:
   list<Client*> getClients();
   string getName();
 private:
-  Channel(const Channel& orig);
+  
   
   //vars
   string *name;

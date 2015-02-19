@@ -12,11 +12,6 @@ SocketToBuffer::SocketToBuffer(libsockcpp::Socket *s) : s(s), b(new Buf())
   
 }
 
-SocketToBuffer::SocketToBuffer(const SocketToBuffer& orig) 
-{
-  
-}
-
 //------------------------------------------------------------------------------
 
 SocketToBuffer::~SocketToBuffer() 

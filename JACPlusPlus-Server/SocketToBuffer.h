@@ -17,11 +17,12 @@
 class SocketToBuffer {
 public:
     SocketToBuffer(libsockcpp::Socket *s);
+    SocketToBuffer(const SocketToBuffer& orig) = delete;
+    virtual ~SocketToBuffer();
+    
     void read();
     Buf *getBuffer();
 private:
-    SocketToBuffer(const SocketToBuffer& orig);
-    virtual ~SocketToBuffer();
     Buf *b;
     libsockcpp::Socket *s;
     

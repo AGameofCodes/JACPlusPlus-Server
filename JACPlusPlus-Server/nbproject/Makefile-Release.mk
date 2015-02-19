@@ -43,7 +43,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/exceptions/AlreadyMemberOfChannelException.o \
 	${OBJECTDIR}/exceptions/ChatException.o \
 	${OBJECTDIR}/exceptions/NotMemberOfChannelException.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/packet/Packet.o
 
 
 # C Compiler Flags
@@ -114,6 +115,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/packet/Packet.o: packet/Packet.cpp 
+	${MKDIR} -p ${OBJECTDIR}/packet
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/packet/Packet.o packet/Packet.cpp
 
 # Subprojects
 .build-subprojects:

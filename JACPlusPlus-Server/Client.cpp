@@ -12,10 +12,6 @@ Client::Client(string name, string nick) : name(new string(name)), nick(new stri
 {
 }
 
-Client::Client(const Client& orig)
-{
-}
-
 Client::~Client()
 {
   delete name;

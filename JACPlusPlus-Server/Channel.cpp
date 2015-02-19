@@ -11,42 +11,41 @@ Channel::Channel(string name) : name(new string(name))
 {
 }
 
-Channel::Channel(const Channel& orig)
-{
-}
-
 Channel::~Channel()
 {
   delete name;
 }
 
 //client management
+
 void Channel::addClient(Client *c)
 {
-  if(isMember(c))
+  if (isMember(c))
   {
     return;
   }
-  
+
   clients.push_back(c);
 }
+
 void Channel::removeClient(Client *c)
 {
-  for(clientsIter it = clients.begin(); it != clients.end(); it++)
+  for (clientsIter it = clients.begin(); it != clients.end(); it++)
   {
-    if(*it == c)
+    if (*it == c)
     {
       //todo remove it;
-      
+
       return;
     }
   }
 }
+
 bool Channel::isMember(Client *c)
 {
-  for(clientsIter it = clients.begin(); it != clients.end(); it++)
+  for (clientsIter it = clients.begin(); it != clients.end(); it++)
   {
-    if(*it == c)
+    if (*it == c)
     {
       return true;
     }

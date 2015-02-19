@@ -22,7 +22,7 @@ private:
   bool enabled;
 
   Server();
-  Server(const Server& orig);
+  Server(const Server& orig) = delete;
   virtual ~Server();
   void run();
 public:

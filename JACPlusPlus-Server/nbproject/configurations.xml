@@ -10,6 +10,7 @@
       <itemPath>Client.h</itemPath>
       <itemPath>ConnectionHandler.h</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.h</itemPath>
+      <itemPath>packet/Packet.h</itemPath>
       <itemPath>Server.h</itemPath>
       <itemPath>SocketToBuffer.h</itemPath>
       <itemPath>Util.h</itemPath>
@@ -27,6 +28,7 @@
       <itemPath>Client.cpp</itemPath>
       <itemPath>ConnectionHandler.cpp</itemPath>
       <itemPath>exceptions/NotMemberOfChannelException.cpp</itemPath>
+      <itemPath>packet/Packet.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
       <itemPath>SocketToBuffer.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -155,6 +157,10 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="packet/Packet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="packet/Packet.h" ex="false" tool="3" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -223,6 +229,10 @@
             flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="packet/Packet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="packet/Packet.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

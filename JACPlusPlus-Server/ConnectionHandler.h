@@ -34,7 +34,7 @@ private:
     
 public:
     ConnectionHandler(libsockcpp::Socket *socket);
-    ConnectionHandler(const ConnectionHandler& orig);
+    ConnectionHandler(const ConnectionHandler& orig) = delete;
     virtual ~ConnectionHandler();
     void start();
     void stop();

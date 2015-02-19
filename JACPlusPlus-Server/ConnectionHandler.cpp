@@ -14,9 +14,6 @@ ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket)
 
 }
 
-ConnectionHandler::ConnectionHandler(const ConnectionHandler& orig)
-{
-}
 
 ConnectionHandler::~ConnectionHandler()
 {
@@ -42,7 +39,6 @@ void ConnectionHandler::start()
   enabled = true;
 
   t = new std::thread(&ConnectionHandler::run, this);
-
 }
 
 
@@ -65,21 +61,28 @@ void ConnectionHandler::readIo()
 {
   readSocket();
   Buf *buf = bufferreader->getBuffer();
-  if (buf->readableBytes() < sizeof (int))
-    return;
 
-  buf->markReaderIndex();
-  int len = buf->readInt();
-  if (buf->readableBytes() > len)
+  while (true)
   {
-    buf->resetReaderIndex();
-    return;
+    //check if packet length is readable
+    if (buf->readableBytes() < sizeof (int))
+      return;
+
+    //mark position to reset it when packet is not fully readable
+    buf->markReaderIndex();
+    
+    //read packet length and check if the packet has fully arrived
+    int len = buf->readInt();
+    if (buf->readableBytes() > len)
+    {
+      buf->resetReaderIndex();
+      return;
+    }
+
+    //packet has fully arrieved ... now handle it
+    char protocoltype = buf->readChar();
+    handlePacket(protocoltype, buf);
   }
-
-
-
-  char protocoltype = buf->readChar();
-  handlePacket(protocoltype, buf);
 }
 
 
@@ -95,6 +98,7 @@ void ConnectionHandler::readSocket()
 
 void ConnectionHandler::handlePacket(char protocoltype, Buf *b)
 {
+  //decide depending on protocol version
   switch (protocoltype)
   {
     case 1:
@@ -111,13 +115,14 @@ void ConnectionHandler::handlePacket(char protocoltype, Buf *b)
 
 void ConnectionHandler::handlePacket1(Buf *b)
 {
-  int typ = b->readInt();
+  int type = b->readInt();
   int transmissionid = b->readInt();
 }
 
 void ConnectionHandler::writeIo()
 {
   //  socket->write(); //todo write
+  //make a queue and write it fully
 }
 
 

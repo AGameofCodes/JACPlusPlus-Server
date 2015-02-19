@@ -28,11 +28,6 @@ Server::Server() : t(NULL), enabled(false)
 
 }
 
-Server::Server(const Server& orig)
-{
-
-}
-
 Server::~Server()
 {
     
@@ -74,7 +69,7 @@ void Server::awaitTermination()
   if (t != NULL)
   {
     t->join();
-    t == NULL;
+    t = NULL;
   }
 }
 
