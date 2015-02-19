@@ -9,6 +9,7 @@
 #define	PACKETFACTORY_H
 
 #include "Packet.h"
+#include <map>
 
 class PacketFactory
 {
@@ -21,6 +22,7 @@ public:
   Packet *create(char type);
 private:
   static PacketFactory *instance;
+  std::map<char, Packet*(*)()> packetctormap; //Packet*(*)() lol
   
   PacketFactory();
 };
