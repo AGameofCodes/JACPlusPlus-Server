@@ -172,6 +172,8 @@ void ConnectionHandler::writeIo()
     
     // remove element and delete it
     writequeue.pop();
+    delete b;
+    delete writebuf;
     delete tq;
   }
 }
