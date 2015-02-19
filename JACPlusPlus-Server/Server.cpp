@@ -23,7 +23,7 @@ using std::string;
 
 Server *Server::instance;
 
-Server::Server() : t(NULL), enabled(false)
+Server::Server() : t(nullptr), enabled(false)
 {
 
 }
@@ -35,7 +35,7 @@ Server::~Server()
 
 Server *Server::getInstance()
 {
-  if (Server::instance == NULL)
+  if (Server::instance == nullptr)
   {
     Server::instance = new Server();
   }
@@ -66,10 +66,10 @@ void Server::stop()
 
 void Server::awaitTermination()
 {
-  if (t != NULL)
+  if (t != nullptr)
   {
     t->join();
-    t = NULL;
+    t = nullptr;
   }
 }
 

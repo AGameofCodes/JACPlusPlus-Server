@@ -143,9 +143,9 @@ void ConnectionHandler::stop()
 
 void ConnectionHandler::awaitTermination()
 {
-  if (t != NULL)
+  if (t != nullptr)
   {
     t->join();
-    t = NULL;
+    t = nullptr;
   }
 }
