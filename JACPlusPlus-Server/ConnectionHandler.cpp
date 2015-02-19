@@ -141,11 +141,52 @@ void ConnectionHandler::handlePacket1(Buf *b)
 
 void ConnectionHandler::writeIo()
 {
-  //  socket->write(); //todo write
   //make a queue and write it fully
+  while(!writequeue.empty())
+  {
+    std::tuple<char, char, int, Packet*> *tq = writequeue.front();
+  
+    // get info
+    char protocoltype = std::get<0>(*tq);
+    char packettype = std::get<1>(*tq);
+    int transmissionid = std::get<2>(*tq);
+    Packet *packet = std::get<3>(*tq);
+    
+    // write packet buffer
+    Buf *b = new Buf();
+    packet->write(b);
+    
+    // get sizeof network packet
+    int len = sizeof(protocoltype) + sizeof(packettype) + sizeof(transmissionid) + b->writerIndex();
+    
+    // encode network packet
+    Buf *writebuf = new Buf();
+    writebuf->write(len);
+    writebuf->write(protocoltype);
+    writebuf->write(packettype);
+    writebuf->write(transmissionid);
+    writebuf->write(b);
+    
+    // write to socket
+    socket->write(writebuf->data(), writebuf->writerIndex());
+    
+    // remove element and delete it
+    writequeue.pop();
+    delete tq;
+  }
 }
 
 
+//------------------------------------------------------------------------------
+
+void ConnectionHandler::writerFct(char protocoltype, char packettype, int transmissionid, Packet *packet)
+{
+  std::tuple<char, char, int, Packet*> *tq = new std::tuple<char, char, int, Packet*>(protocoltype, packettype, transmissionid, packet);
+  writeqmutex.lock();
+  // add elment to queue
+  writequeue.push(tq);
+  writeqmutex.unlock();
+}
 
 
 //------------------------------------------------------------------------------
@@ -166,6 +207,6 @@ void ConnectionHandler::awaitTermination()
   if (t != nullptr)
   {
     t->join();
-    t = nullptr;
+    t = nullptr; 
   }
 }

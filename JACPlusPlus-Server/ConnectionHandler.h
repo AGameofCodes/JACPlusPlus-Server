@@ -14,6 +14,9 @@
 #include <string>
 #include "../../libanoi/Buf.h"
 #include "SocketToBuffer.h"
+#include <queue>
+#include "packet/Packet.h"
+#include <mutex>
 
 class ConnectionHandler
 {
@@ -24,7 +27,10 @@ private:
   std::thread *t;
   libsockcpp::Socket *socket;
   SocketToBuffer *bufferreader;
-
+  //                    protocoltype, packettype, transmissionid, packet
+  std::queue<std::tuple<char, char, int, Packet*>*> writequeue;
+  std::mutex writeqmutex;
+  
   int transmissionid;
 
   int newTransMissionId();
@@ -34,7 +40,7 @@ private:
   void readSocket();
   void handlePacket(char protocoltype, Buf *b);
   void handlePacket1(Buf *b);
-
+  void writerFct(char protocoltype, char packettype, int transmissionid, Packet *packet);
 public:
   ConnectionHandler(libsockcpp::Socket *socket);
   virtual ~ConnectionHandler();
