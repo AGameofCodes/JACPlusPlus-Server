@@ -8,25 +8,24 @@
 #include <thread>
 #include "ConnectionHandler.h"
 
-
-ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket) 
+ConnectionHandler::ConnectionHandler(libsockcpp::Socket *socket)
 : bufferreader(new SocketToBuffer(socket)), transmissionid(0)
 {
-  
+
 }
 
-ConnectionHandler::ConnectionHandler(const ConnectionHandler& orig) 
+ConnectionHandler::ConnectionHandler(const ConnectionHandler& orig)
 {
 }
 
-ConnectionHandler::~ConnectionHandler() 
+ConnectionHandler::~ConnectionHandler()
 {
   delete bufferreader;
 }
 
 //------------------------------------------------------------------------------
 
-int ConnectionHandler::newTransMissionId() 
+int ConnectionHandler::newTransMissionId()
 {
   return transmissionid++;
 }
@@ -34,50 +33,51 @@ int ConnectionHandler::newTransMissionId()
 
 //------------------------------------------------------------------------------
 
-void ConnectionHandler::start() 
+void ConnectionHandler::start()
 {
-  if(enabled)
+  if (enabled)
   {
     return;
   }
   enabled = true;
-  
+
   t = new std::thread(&ConnectionHandler::run, this);
-  
+
 }
 
 
 //------------------------------------------------------------------------------
 
-void ConnectionHandler::run() 
+void ConnectionHandler::run()
 {
-  while(enabled)
+  while (enabled)
   {
     readIo();
     writeIo();
   }
-  
+
 }
 
 
 //------------------------------------------------------------------------------
 
-void ConnectionHandler::readIo() {
+void ConnectionHandler::readIo()
+{
   readSocket();
   Buf *buf = bufferreader->getBuffer();
-  if(buf->readableBytes() < sizeof(int))
+  if (buf->readableBytes() < sizeof (int))
     return;
-  
+
   buf->markReaderIndex();
   int len = buf->readInt();
-  if(buf->readableBytes() > len)
+  if (buf->readableBytes() > len)
   {
     buf->resetReaderIndex();
     return;
   }
-  
-  
-  
+
+
+
   char protocoltype = buf->readChar();
   handlePacket(protocoltype, buf);
 }
@@ -97,10 +97,10 @@ void ConnectionHandler::handlePacket(char protocoltype, Buf *b)
 {
   switch (protocoltype)
   {
-    case 1: 
+    case 1:
       handlePacket1(b);
       break;
-      
+
     default:
       break;
   }
@@ -117,7 +117,7 @@ void ConnectionHandler::handlePacket1(Buf *b)
 
 void ConnectionHandler::writeIo()
 {
-//  socket->write(); //todo write
+  //  socket->write(); //todo write
 }
 
 
@@ -125,9 +125,9 @@ void ConnectionHandler::writeIo()
 
 //------------------------------------------------------------------------------
 
-void ConnectionHandler::stop() 
+void ConnectionHandler::stop()
 {
-  if(!enabled)
+  if (!enabled)
   {
     return;
   }
@@ -138,7 +138,7 @@ void ConnectionHandler::stop()
 
 void ConnectionHandler::awaitTermination()
 {
-  if(t != NULL)
+  if (t != NULL)
   {
     t->join();
     t = NULL;
