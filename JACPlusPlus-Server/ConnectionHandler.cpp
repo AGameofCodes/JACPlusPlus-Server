@@ -67,7 +67,7 @@ void ConnectionHandler::readIo()
   {
     //check if packet length is readable
     if (buf->readableBytes() < sizeof (int))
-      return;
+      break;
 
     //mark position to reset it when packet is not fully readable
     buf->markReaderIndex();
@@ -77,13 +77,15 @@ void ConnectionHandler::readIo()
     if (buf->readableBytes() > len)
     {
       buf->resetReaderIndex();
-      return;
+      break;
     }
 
     //packet has fully arrieved ... now handle it
     char protocoltype = buf->readChar();
     handlePacket(protocoltype, buf);
   }
+  
+  buf->discardReadBytes();
 }
 
 
@@ -132,6 +134,9 @@ void ConnectionHandler::handlePacket1(Buf *b)
   
   //handle packet
   //todo: ...
+  
+  //delete the packet
+  delete p;
 }
 
 void ConnectionHandler::writeIo()
